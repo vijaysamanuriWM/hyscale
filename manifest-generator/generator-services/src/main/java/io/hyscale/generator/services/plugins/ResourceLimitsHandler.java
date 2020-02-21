@@ -48,12 +48,13 @@ import io.kubernetes.client.models.V1ResourceRequirements;
 public class ResourceLimitsHandler implements ManifestHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceLimitsHandler.class);
-    private static final String RANGE_REGEX = "(\\d+.*(Ki|Mi|Gi|Ti|Pi|Ei|[numkMGTPE]|))-(\\d+.*((Ki|Mi|Gi|Ti|Pi|Ei|[numkMGTPE]|)))";
-    private static final String CPU_REGEX = "(\\d+.*(([.][\\d])[m]|))-(\\d+.*(([.][\\d])[m]|))";
+    private static final String RANGE_REGEX = "^\\d+(-\\d+)?$|^\\d+(E|P|T|G|M|K)(-\\d+(E|P|T|G|M|K))?$";
+    private static final String CPU_REGEX = "^((\\d+\\.)?\\d+(-(\\d+\\.)?\\d+)?)$|^((\\d+\\.)?\\d+[m])(-((\\d+\\.)?\\d)+[m])?$";
     private static final Pattern cpuRangePattern = Pattern.compile(CPU_REGEX);
     private static final Pattern rangePattern = Pattern.compile(RANGE_REGEX);
 
-    private static final String DEFAULT_MIN_MEMORY = "4Mi";
+    private static final String DEFAULT_MIN_MEMORY = "4M";
+    //mininimum cpu for k8s is 1m
     private static final String DEFAULT_MIN_CPU = "1m";
 
     @Override

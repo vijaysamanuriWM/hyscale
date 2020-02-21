@@ -60,8 +60,6 @@ public class VolumeTemplatesHandler implements ManifestHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(VolumeTemplatesHandler.class);
 
-    private static final String PVC_DEFAULT_STORAGE_UNIT = "Gi";
-
     @Override
     public List<ManifestSnippet> handle(ServiceSpec serviceSpec, ManifestContext manifestContext)
             throws HyscaleException {

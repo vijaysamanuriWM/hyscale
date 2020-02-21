@@ -90,15 +90,11 @@
           "type": "string"
         },
         "tag": {
-          "anyOf": [
-            {
-              "type": "string",
-              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*"
-            },
-            {
-              "type": "number"
-            }
+          "type": [
+            "number",
+            "string"
           ],
+          "pattern": "^[\\w][\\w.-]{0,127}$",
           "description": "tag defines the final image tag"
         },
         "registry": {
@@ -227,7 +223,8 @@
             "type": "string"
           },
           "size": {
-            "type": "string",
+            "type": ["number","string"],
+            "pattern": "^(\\d+\\.)?\\d+(-(\\d+\\.)?\\d+)?$|^(\\d+\\.)?\\d+(E|P|T|G|M|K)(-(\\d+\\.)?\\d+(E|P|T|G|M|K))?$",
             "description": "size of volume",
             "default": "1g"
           },
@@ -301,18 +298,18 @@
     },
     "memory": {
       "description": "Defines the range of memory the service has to use in the container",
-      "type": "string",
-      "pattern": "(\\d+(Ki|Mi|Gi|Ti|Pi|Ei|[numkMGTPE]|))+(-\\d+(Ki|Mi|Gi|Ti|Pi|Ei|[numkMGTPE]|))*"
+      "type": ["integer","string"],
+      "pattern": "^\\d+(-\\d+)?$|^\\d+(E|P|T|G|M|K)(-\\d+(E|P|T|G|M|K))?$"
     },
     "cpu": {
       "description": "Defines the range of cpu the service has to use in the container",
-      "type": "string",
-      "pattern": "([\\d.\\d]+m)+(-[\\d.\\d]+m)*"
+      "type": ["number","string"],
+      "pattern": "^((\\d+\\.)?\\d+(-(\\d+\\.)?\\d+)?)$|^((\\d+\\.)?\\d+[m])(-((\\d+\\.)?\\d)+[m])?$"
     },
     "startCommand": {
       "description": "Defines the command which gets executed at the time of container start",
       "type": "string",
-      "pattern": "[\\w,]*"
+      "pattern": "^[\\w,]*$"
     },
     "agents": {
       "description": "Describes the list of sidecars to be attached to the service",
