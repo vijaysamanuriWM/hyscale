@@ -24,6 +24,8 @@ c) orders of magnitude smaller to write & maintain
 
 ![demo](docs/images/hyscale-demo-microservices.gif)
 
+![demogif](docs/images/demo.gif)
+
 ## Examples
 
 For instance, if your service requires to persist some data at the path /mydata , all you would need to declare is:
