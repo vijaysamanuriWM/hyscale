@@ -20,6 +20,9 @@ a) be declarative, <br />
 b) intuitive to read, and <br /> 
 c) orders of magnitude smaller to write & maintain
 
+## DEMO
+
+![demo](docs/images/hyscale-demo-microservices.gif)
 
 ## Examples
 
